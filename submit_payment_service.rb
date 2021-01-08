@@ -18,10 +18,9 @@ class SubmitPaymentService
     payload = URI.encode_www_form([data])
 
     response = HTTParty.post 'https://demo2.2c2p.com/2C2PFrontEnd/SecurePayment/Payment.aspx',
-                              pem: File.read('/usr/local/etc/openssl@1.1/cert.pem'),
                               body: { 'paymentRequest' => payload },
                               headers: { 'Content-Type' => 'application/x-www-form-urlencoded' }
-    byebug
+
     puts response.code, response.message, response.headers.inspect
     puts "body", response.body
   end
